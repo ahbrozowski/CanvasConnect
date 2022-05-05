@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <style>
+            body { font-family: "Lato", sans-serif; color:rgb(230,230,230);}
+
+            .nav{
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 10px;
+            background: #777777;
+            overflow-x: hidden;
+            }
+            .servers {
+            width: 130px;
+            padding: 8px 0;
+            }
+            .channels {
+            margin-left: 131px; 
+            width: 100px;
+            padding: 3px 0;
+            }
+
+            .channel{
+                font-size: 12;
+                padding: 10px 10px 10px 10px;
+            }
+            .server{
+                font-size: 24;
+                padding: 10px 10px 10px 10px;
+            }
+
+
+            .serverName {   
+            text-decoration: underline;
+            text-align:center;
+            font-size: 14px;
+            display: block; 
+            }
+
+            .astext{
+            text-decoration: none;
+            background:none;
+            border:none;
+            display: block; 
+            color:rgb(230,230,230);
+            cursor: pointer;
+            }
+
+            .selected {   
+            color:rgb(200,200,200);
+            background: #555555;
+            }
+
+            .nav2{
+                padding: 0px 0px 5px 6px;
+                font-size: 12px;
+            }
+
+            .astext:hover {
+            color: #333333;
+            }
+
+            .main {
+            margin-left: 140px; 
+            font-size: 15px;
+            padding: 0px 5px;
+            }
+
+            .box {
+            width: 400px;
+            margin: 50px auto;
+            background: #aaaaaa;
+            padding: 10px;
+            text-align: center;
+            font-weight: 900;
+            position:relative;
+            }
+            .me:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            border-left: 10px solid #aaaaaa;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #aaaaaa;
+            border-bottom: 10px solid transparent;
+            right: -20px;
+            top: 6px;
+            }
+
+            .them:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-right: 10px solid #aaaaaa;
+            border-top: 10px solid #aaaaaa;
+            border-bottom: 10px solid transparent;
+            left: -19px;
+            top: 6px;
+            }
+
+            .textbox{
+            position: fixed;
+            bottom: 0; 
+            padding: 20px;
+            height: 20px;
+            background: #777777;
+            width: 100%;
+            }
+            .call{
+                font-size: 10;
+            }           
+            .voiceChannel {
+                padding-bottom: 0px;
+            }
+            }
+            
+        </style>
+        <title>Page Title</title>
+    </head>
+    <body style="background-color:rgb(100,100,100)">
+        <div class="nav servers">
+            <button class="astext server selected">#Class-1</button>
+            <button class="astext server">#Class-2</button>
+            <button class="astext server">#Class-3</button>
+            <button class="astext server">#Class-4</button>
+            <button class="astext server">#Class-5</button>
+        </div>
+        <div class="nav channels">
+            <p class="serverName"><b>Server/Class Name</b></p>
+            <button class="astext channel" id="c1" onclick="selectItem(this);">#Channel-1</button>
+            <button class="astext channel" id="c2" onclick="selectItem(this);">#Channel-2</button>
+            <button class="astext channel" id="c3" onclick="selectItem(this);">#Channel-3</button>
+            <button class="astext channel" id="c4" onclick="selectItem(this);">#Channel-4</button>
+            <button class="astext channel" id="c5" onclick="selectItem(this);">#Channel-5</button>
+            <button class="astext channel voiceChannel" id="c6" onclick="selectItem(this);">#Voice-Call</button>
+            <ul>
+                <li class="call">Student4</li>
+                <li class="call">Student7</li>
+            </ul>
+            <button class="astext channel voiceChannel" id="c7" onclick="selectItem(this);">#Voice-Call-2</button>
+            <ul>
+                <li class="call">Student3</li>
+                <li class="call">Student2</li>
+            </ul>
+        
+         </div>
+        <div class="main" id="messages">
+            <br>
+            <div class="box me">
+                <p>Student-1 : anyone want to study today?</p>
+            </div>
+            <div class="box them">
+                <p>Student-2 : I could be down what time?</p>
+            </div>
+            <div class="box them">
+                <p>Student-3 : I could also be free</p>
+            </div>
+            <div class="box them">
+                <p>Student-4 : look at this cat</p>
+                <img src= "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d"
+                 style="width:400px;height:400px";>
+            </div>
+            <br id="butt">
+            <br>
+        </div>
+        <div class="textbox" >
+            <center>
+                <label for="msg">message:</label>
+                <input type="text" id="msg" style="width:400px" >
+                <button type="button" onclick="onClick()">send</button>
+            <center>
+        </div>
+
+
+    <script>
+        const element = document.getElementById("messages");
+        var selected = "none";
+
+        function selectItem(element){
+            var id = element.getAttribute("id")
+            if(selected != "none"){
+                old = document.getElementById(selected);
+                old.classList.remove("selected");
+            }
+            selected = id;
+            element.classList.add("selected");
+        }
+
+        function onClick(){
+            const msg = document.getElementById("msg").value;
+            const div = document.createElement("div");
+            div.classList.add("box");
+            div.classList.add("me");
+            const p = document.createElement("p");
+            const node = document.createTextNode("student-1 : " + msg);
+            p.appendChild(node);
+            div.appendChild(p);
+            const butt = document.getElementById("butt");
+            element.insertBefore(div,butt);
+            document.getElementById("msg").value = "";
+            butt.scrollIntoView();
+        }
+
+        document.getElementById("msg").addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                onClick();
+            }
+        });
+
+    </script>
+    </body>
+</html>

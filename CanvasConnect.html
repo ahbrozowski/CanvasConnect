@@ -1,0 +1,58 @@
+ <html>
+    <head>
+        <style>
+            .box {
+            width: 200px;
+            height: 25%;
+            margin:auto;
+            background: #aaaaaa;
+            padding: 10px;
+            top: 35%;
+            position:relative;
+            justify-content: center;
+            }
+            .box input {
+                margin:0px;
+                padding: 0px;
+                height: 20px;
+            }
+            .text {
+                color:rgb(200,200,200);
+            }
+        </style>
+        <center>
+            
+            <h1 class="text">Connect Canvas To Class</h1>
+        </center>
+    </head>
+    <body style="background-color:rgb(100,100,100)">
+        <div class="box">
+            <input type="text" id="name" name="name"placeholder="Username">
+            <br>
+            <input type="password" id="pass" name="pass"placeholder="Password">
+            <br>
+            <input type="text" id="classID" name="classID"placeholder="ClassID">
+            <br><br>
+            <button type ="button" onclick="submit()" > submit</button>
+
+        </div>
+        <script>
+            function submit(){
+                const name = document.getElementById("name").value;
+                const pass = document.getElementById("pass").value;
+                const classID = document.getElementById("classID").value;
+                document.getElementById("name").value = "";
+                document.getElementById("pass").value = "";
+                document.getElementById("classID").value = "";
+
+                if(name != "" && pass != "" && classID != "" ){
+                    alert("linked up canvas and class");
+                } else {
+                    alert("please enter information");
+                }
+
+            }
+        </script>
+    </body>
+    
+ </html>
